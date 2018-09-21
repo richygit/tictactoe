@@ -17,9 +17,7 @@ class Model {
         gameState = Array(3) {Array(3) {Player.NONE} }
     }
 
-    fun markCurrentPlayer(posn: String): Player? {
-        val x = Character.getNumericValue(posn[0])-1
-        val y = Character.getNumericValue(posn[1])-1
+    fun markCurrentPlayer(x: Int, y: Int): Player? {
         if (gameState[x][y] == Player.NONE) {
             gameState[x][y] = currentPlayer
             Log.d("MODEL", "game[$x][$y] = $currentPlayer")
