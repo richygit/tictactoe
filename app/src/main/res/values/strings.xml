@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">tictactoe</string>
+    <string name="current_player">Current:</string>
+</resources>
