@@ -34,10 +34,7 @@ class MainActivity : AppCompatActivity(), TicTacToeView {
     override fun reset() {
         Log.d("MAIN", "childcount = " + tableLayout.childCount)
         for (i in 0..tableLayout.childCount) {
-            val row = tableLayout.getChildAt(i)
-            if (row == null) {
-                continue
-            }
+            val row = tableLayout.getChildAt(i) ?: continue
             val group = row as ViewGroup
             for (j in 0..group.childCount) {
                 val child = group.getChildAt(j)
@@ -51,21 +48,15 @@ class MainActivity : AppCompatActivity(), TicTacToeView {
     }
 
     override fun setButtonImage(x: Int, y: Int, player: Model.Player) {
-        val btnId = "btn" + (x+1) + "" + (y+1)
-        Log.d("MAIN", btnId)
-        val resId = resources.getIdentifier(btnId, "id", packageName)
+        val resId = resources.getIdentifier("btn" + (x+1) + "" + (y+1), "id", packageName)
         val view  =  find<View>(resId)
-        var img = 0
-        var next = 0
         if (player == Model.Player.CROSS) {
-            img = R.drawable.cross
-            next = R.drawable.circle
+            (view as ImageButton).setImageResource(R.drawable.cross)
+            btnNext.setImageResource(R.drawable.circle)
         } else {
-            img = R.drawable.circle
-            next = R.drawable.cross
+            (view as ImageButton).setImageResource(R.drawable.circle)
+            btnNext.setImageResource(R.drawable.cross)
         }
-        (view as ImageButton).setImageResource(img)
-        btnNext.setImageResource(next)
     }
 
     override fun showResult(result: Model.Player) {
